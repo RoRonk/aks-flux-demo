@@ -1,2 +1,2 @@
 # aks-flux-demo
-Demo GitOps repository for deploying Kubernetes manifests to an AKS cluster using FluxCD.
+This repository is used to learn GitOps with FluxCD on Azure Kubernetes Service (AKS). FluxCD monitors this repository and automatically applies changes to the cluster.
