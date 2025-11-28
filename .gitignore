@@ -1,0 +1,12 @@
+# Ignore local IDE files
+.vscode/
+.idea/
+
+# Ignore OS files
+.DS_Store
+Thumbs.db
+
+# Ignore Terraform state if added to repo
+*.tfstate
+*.tfstate.backup
+.terraform/
