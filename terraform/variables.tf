@@ -1,12 +1,12 @@
 variable "subscription_id" {
   type        = string
-  default     = "c067469d-b66c-42b7-b993-f5476b8b694a"
-  description = "The Azure subscription id"
+  default     = "00000000-0000-0000-0000-000000000000"
+  description = "Azure subscription id"
 }
 
 variable "resource_group_name" {
   type        = string
-  default     = "rtae-flux-rg"
+  default     = "rg-placeholder"
   description = "Name of azure research group"
 }
 
@@ -18,26 +18,38 @@ variable "location" {
 
 variable "k8s_cluster" {
   type        = string
-  default     = "rtae-aks-dev"
+  default     = "k8s-placeholder"
   description = "Name and DNS prefix for the cluster"
+}
+
+variable "namespace" {
+  type        = string
+  default     = "ns-placeholder"
+  description = "Namespace for resources"
 }
 
 variable "flux_extenstion_name" {
   type        = string
-  default     = "rtae-flux-ext"
+  default     = "flux-ext-placeholder"
   description = "Name of flux extension"
 }
 
 variable "flux_config_name" {
   type        = string
-  default     = "rtae-flux-config"
+  default     = "flux-config_placeholder"
   description = "Name of flux configuration"
 }
 
 variable "git_repository" {
   type        = string
-  default     = "https://github.com/RoRonk/aks-flux-demo.git"
+  default     = "https://github.com/name/repo-placeholder.git"
   description = "Link to git repository"
+}
+
+variable "git_branch" {
+  type        = string
+  default     = "branch-placeholder"
+  description = "Branch of the Git repository FluxCD should track"
 }
 
 variable "node_count" {
@@ -50,18 +62,6 @@ variable "vm_size" {
   type        = string
   default     = "Standard_D2_v3"
   description = "VM size for the AKS nodes"
-}
-
-variable "namespace" {
-  type        = string
-  default     = "flux"
-  description = "Namespace for FluxCD controllers"
-}
-
-variable "git_branch" {
-  type        = string
-  default     = "main"
-  description = "Branch of the Git repository FluxCD should track"
 }
 
 variable "sync_interval" {
