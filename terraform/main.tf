@@ -29,8 +29,7 @@ resource "azurerm_kubernetes_cluster_extension" "flux_extension" {
   extension_type = "microsoft.flux"
 }
 
-# newer, more complete resource designed for FluxCD
-# installs FluxCD contorllers, connects git repo for GitOps and lets you configure synchronization interval, deploy keys, branch, etc.
+# installs FluxCD contorllers, connects git repo for GitOps and let me configure synchronization interval, deploy keys, branch, etc.
 resource "azurerm_kubernetes_flux_configuration" "flux_config" {
   name       = var.flux_config_name
   cluster_id = azurerm_kubernetes_cluster.k8s_cluster.id
@@ -44,6 +43,7 @@ resource "azurerm_kubernetes_flux_configuration" "flux_config" {
     reference_value = var.git_branch
   }
 
+  # lets you customize withputh changing original files
   kustomizations {
     name                     = var.kustomizations_name
     sync_interval_in_seconds = 60
@@ -55,15 +55,3 @@ resource "azurerm_kubernetes_flux_configuration" "flux_config" {
     azurerm_kubernetes_cluster_extension.flux_extension
   ]
 }
-
-
-# FluxCD:
-# Allows aks cluster to automatically apply k8s manifests from a Git repo
-# push deployment, FluxCd sees change and auto deploys it to aks cluster
-# aks + flux = aks fluxter stays in sync with git
-
-# WHAT DO DO:
-#
-# terraform init (-upgrade if dependecy changes)   # set up Terraform provider
-# terraform plan -out=tfplan   # preview what will be created
-# terraform apply tfplan  # create everything
