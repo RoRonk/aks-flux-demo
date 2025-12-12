@@ -1,0 +1,27 @@
+apiVersion: fluxclusters.azure.com/v1
+kind: GitOpsKubernetesRoleBinding
+metadata:
+  name: flux-admin
+  namespace: flux
+spec:
+  clusterRole:
+    rules:
+      - apiGroups: [""]
+        resources: ["services", "pods", "endpoints", "events", "configmaps", "secrets"]
+        verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+      - apiGroups: ["apps"]
+        resources: ["deployments", "replicasets", "daemonsets", "statefulsets"]
+        verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+      - apiGroups: ["batch"]
+        resources: ["jobs", "cronjobs"]
+        verbs: ["*"]
+      - apiGroups: ["networking.k8s.io"]
+        resources: ["ingresses", "networkpolicies"]
+        verbs: ["*"]
+      - apiGroups: ["rbac.authorization.k8s.io"]
+        resources: ["rolebindings", "roles"]
+        verbs: ["*"]
+  subject:
+    kind: ServiceAccount
+    name: flux-applier
+    namespace: flux
